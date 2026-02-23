@@ -54,7 +54,7 @@ export default function QuizPage() {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [answers, setAnswers] = useState<QuizAnswer[]>([]);
   const [showCelebration, setShowCelebration] = useState(false);
-  const [gradeResult, setGradeResult] = useState<{ pass: boolean; reason: string } | null>(null);
+  const [gradeResult, setGradeResult] = useState<import('@/lib/grading').GradingResult | null>(null);
   const [isAdvancing, setIsAdvancing] = useState(false);
 
   const [upperTotalPassed, setUpperTotalPassed] = useState(0);
