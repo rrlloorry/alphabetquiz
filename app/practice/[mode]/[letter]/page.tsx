@@ -7,7 +7,7 @@ import StrokeOrderModal from '@/components/StrokeOrderModal';
 import GradeResult from '@/components/GradeResult';
 import { gradeUppercase, gradeLowercase, GradingResult } from '@/lib/grading';
 import { updateLetterStatus } from '@/lib/storage';
-import { letterHints, UPPERCASE_LETTERS, LOWERCASE_LETTERS } from '@/lib/strokeData';
+import { letterHints, UPPERCASE_LETTERS, LOWERCASE_LETTERS, letterPronunciations } from '@/lib/strokeData';
 
 interface PageProps {
   params: Promise<{ mode: string; letter: string }>;
@@ -62,7 +62,7 @@ export default function PracticePage({ params }: PageProps) {
     const mse = canvasRef.current?.getShapeMSE(letter, isUppercase) ?? 1;
     console.log(`[shape] "${letter}" MSE = ${mse.toFixed(4)}`);
 
-    const MSE_THRESHOLD = 0.28;
+    const MSE_THRESHOLD = 0.32;
     if (mse > MSE_THRESHOLD) {
       updateLetterStatus(letter, isUppercase, 'attempt');
       setGradeEntry({
@@ -105,6 +105,9 @@ export default function PracticePage({ params }: PageProps) {
           <span className="font-bold font-baloo text-brand-navy text-2xl">
             {isUppercase ? '대문자' : '소문자'}{' '}
             <span className="text-amber-500 text-3xl">{letter}</span>
+            <span className="text-gray-400 text-xl font-nunito ml-1.5 font-bold">
+              ({letterPronunciations[letter.toUpperCase()]})
+            </span>
           </span>
           <p className="text-xs text-gray-400 font-nunito mt-0.5">
             {currentIdx + 1} / {totalLetters}

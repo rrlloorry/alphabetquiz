@@ -132,7 +132,7 @@ export default function QuizPage() {
     let result = q.isUppercase ? gradeUppercase(points, 400, 400) : gradeLowercase(q.letter, points, 400, 400);
     if (result.pass) {
       const mse = canvasRef.current.getShapeMSE(q.letter, q.isUppercase);
-      if (mse > 0.28) {
+      if (mse > 0.32) {
         result = { 
           pass: false, 
           reason: '모양이 조금 달라요! 가이드를 보면서 정성껏 다시 써볼까요? 💪',

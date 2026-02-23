@@ -169,6 +169,13 @@ export const lowercaseStrokes: Record<string, string[]> = {
   ],
 };
 
+export const letterPronunciations: Record<string, string> = {
+  A: '에이', B: '비', C: '씨', D: '디', E: '이', F: '에프', G: '쥐', H: '에이치',
+  I: '아이', J: '제이', K: '케이', L: '엘', M: '엠', N: '엔', O: '오', P: '피',
+  Q: '큐', R: '알', S: '에스', T: '티', U: '유', V: '브이', W: '더블유', X: '엑스',
+  Y: '와이', Z: '지'
+};
+
 export const letterHints: Record<string, string> = {
   A: 'A는 산처럼 뾰족해요! 가운데 막대기도 잊지 마세요 ⛰️',
   B: 'B는 배가 볼록볼록! 위아래 동그라미 두 개예요 🎈',
