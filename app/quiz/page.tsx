@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import DrawingCanvas, { DrawingCanvasRef } from '@/components/DrawingCanvas';
 import Celebration from '@/components/Celebration';
-import { gradeUppercase, gradeLowercase } from '@/lib/grading';
+import { gradeUppercase, gradeLowercase, GradingResult } from '@/lib/grading';
 import { loadData, saveData, updateLetterStatus } from '@/lib/storage';
-import { UPPERCASE_LETTERS, LOWERCASE_LETTERS } from '@/lib/strokeData';
+import { UPPERCASE_LETTERS, LOWERCASE_LETTERS, letterPronunciations } from '@/lib/strokeData';
 
 type Phase = 'intro' | 'question' | 'result';
 type Mode = 'uppercase' | 'lowercase' | 'mixed';
@@ -69,7 +69,7 @@ export default function QuizPage() {
   const MIN_REQUIRED = 10;
   const canStartUpper = upperTotalPassed >= MIN_REQUIRED;
   const canStartLower = lowerTotalPassed >= MIN_REQUIRED;
-  const canStartMixed = (upperTotalPassed + lowerTotalPassed) >= MIN_REQUIRED;
+  const canStartMixed = canStartUpper && canStartLower;
 
   const canStart = 
     mode === 'uppercase' ? canStartUpper :
@@ -213,7 +213,13 @@ export default function QuizPage() {
               </div>
               {!canStart ? (
                 <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5">
-                  <p className="text-amber-700 font-nunito text-sm leading-relaxed">💡 <strong>10개 이상의 알파벳</strong>을 '완료'해야<br />퀴즈에 도전할 수 있어요! ✏️</p>
+                  <p className="text-amber-700 font-nunito text-sm leading-relaxed text-center font-bold">
+                    {mode === 'mixed' ? (
+                      <>💡 <strong>대문자 10개</strong>와 <strong>소문자 10개</strong> 이상<br />완료해야 혼합 퀴즈에 도전할 수 있어요! ✏️</>
+                    ) : (
+                      <>💡 <strong>10개 이상의 알파벳</strong>을 '완료'해야<br />퀴즈에 도전할 수 있어요! ✏️</>
+                    )}
+                  </p>
                 </div>
               ) : (
                 <button onClick={() => startQuiz(mode)} className="w-full bg-gradient-to-r from-sky-400 to-blue-400 hover:from-sky-500 hover:to-blue-500 active:scale-95 text-white font-bold py-5 rounded-2xl transition-all shadow-xl shadow-sky-200 font-baloo text-2xl pulse-glow">🎯 퀴즈 시작!</button>
@@ -286,10 +292,13 @@ export default function QuizPage() {
               )}
             </div>
             <div className="flex flex-col justify-between gap-4">
-              <div className="text-center bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+              <div className="text-center bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex flex-col items-center justify-center min-h-[220px]">
                 <p className="text-sm font-nunito text-gray-500 mb-2">이 글자를 써보세요!</p>
-                <div className="text-9xl font-bold font-baloo text-brand-navy animate-pop-in select-none">{q.letter}</div>
-                <p className="text-xs font-nunito text-gray-400 mt-2">{q.isUppercase ? '대문자' : '소문자'}</p>
+                <div className="flex flex-col items-center gap-1">
+                  <div className="text-9xl font-bold font-baloo text-brand-navy animate-pop-in select-none leading-none">{q.letter}</div>
+                  <div className="text-2xl font-bold font-nunito text-gray-400 mt-2">({letterPronunciations[q.letter.toUpperCase()]})</div>
+                </div>
+                <p className="text-xs font-nunito text-gray-400 mt-4">{q.isUppercase ? '대문자' : '소문자'}</p>
               </div>
               <div className="flex flex-col gap-4">
                 <button
