@@ -1,0 +1,3 @@
+[   23026ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/favicon.ico:0
+[   26147ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/manifest.json:0
+[   26175ms] [ERROR] Manifest fetch from http://localhost:3001/manifest.json failed, code 404 @ http://localhost:3001/:0

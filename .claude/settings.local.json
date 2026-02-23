@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx next:*)",
+      "Bash(npm run build:*)",
+      "mcp__playwright__browser_navigate",
+      "Bash(start \"\" \"C:\\\\Users\\\\jes65\\\\OneDrive\\\\바탕 화면\\\\바이브코딩\\\\공모전_알파벳 연습\\\\preview.html\")",
+      "Bash(tskill:*)",
+      "Bash(npx kill-port:*)",
+      "Bash(npm run dev:*)",
+      "Bash(start:*)"
+    ]
+  }
+}

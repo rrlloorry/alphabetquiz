@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>알파벳 쓰기 연습 – PC/태블릿 디자인 미리보기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Noto+Sans+KR:wght@400;500;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream:  #fffef0;
+  --navy:   #1e1b4b;
+  --amber:  #f59e0b;
+  --sky:    #38bdf8;
+  --green:  #34d399;
+}
+
+/* ── OUTER PAGE ──────────────────────────────────── */
+html, body { height: 100%; }
+body {
+  background: #e8e5f0;
+  font-family: 'Nunito', 'Noto Sans KR', sans-serif;
+  color: var(--navy);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  padding: 24px 16px 40px;
+}
+
+h1,h2,h3,.font-baloo {
+  font-family: 'Baloo 2', 'Noto Sans KR', sans-serif;
+}
+
+/* ── SCREEN NAV ──────────────────────────────────── */
+.screen-nav {
+  max-width: 1100px;
+  margin: 0 auto 16px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.screen-nav span {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b6b8e;
+  margin-right: 4px;
+  white-space: nowrap;
+}
+.nav-btn {
+  font-family: 'Nunito', 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 2px solid #c8c5e0;
+  background: white;
+  color: #555;
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.nav-btn:hover { border-color: var(--amber); color: var(--navy); }
+.nav-btn.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: white;
+}
+
+/* ── BROWSER CHROME ──────────────────────────────── */
+.browser-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,.22), 0 8px 24px rgba(0,0,0,.12);
+}
+.browser-chrome {
+  background: #3a3a4a;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dots { display: flex; gap: 6px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot-r { background: #ff5f57; }
+.dot-y { background: #ffbd2e; }
+.dot-g { background: #28c840; }
+.url-bar {
+  flex: 1;
+  background: #525265;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: #aaa;
+  font-family: monospace;
+}
+
+/* ── APP CONTAINER ───────────────────────────────── */
+.app-container {
+  background: var(--cream);
+  min-height: 620px;
+}
+.app-inner {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+/* ── SCREEN ──────────────────────────────────────── */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ═══════════════════════════════════════════════════
+   HOME SCREEN
+═══════════════════════════════════════════════════ */
+#screen-home .app-inner {
+  padding: 48px 48px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.home-hero {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.mascot { font-size: 64px; animation: float 3s ease-in-out infinite; user-select: none; }
+.home-hero h1 {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.home-hero p {
+  color: #6b7280;
+  font-size: 15px;
+  margin-top: 6px;
+}
+.home-cols {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 32px;
+  align-items: start;
+}
+.action-col { display: flex; flex-direction: column; gap: 16px; }
+
+.card-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 24px;
+  padding: 28px 32px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  text-align: left;
+  width: 100%;
+  transition: transform .15s, box-shadow .15s;
+}
+.card-btn:hover { transform: translateY(-2px); }
+.card-btn:active { transform: scale(.97); }
+.card-btn .btn-title { font-family: 'Baloo 2','Noto Sans KR',sans-serif; font-size: 30px; font-weight: 800; line-height: 1; }
+.card-btn .btn-sub { font-size: 13px; margin-top: 6px; opacity: .85; }
+.card-btn .btn-icon { font-size: 52px; user-select: none; }
+
+.btn-amber {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  box-shadow: 0 12px 32px rgba(245,158,11,.35);
+}
+.btn-sky {
+  background: linear-gradient(135deg, #38bdf8, #60a5fa);
+  box-shadow: 0 12px 32px rgba(56,189,248,.30);
+}
+
+.info-box {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #92400e;
+}
+
+/* Progress card */
+.progress-card {
+  background: white;
+  border-radius: 24px;
+  padding: 28px 28px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.07);
+  border: 1px solid #fde68a;
+}
+.progress-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.prog-bar-wrap { margin-bottom: 20px; }
+.prog-label { display: flex; justify-content: space-between; font-size: 13px; color: #6b7280; margin-bottom: 6px; }
+.prog-label strong { color: #d97706; }
+.prog-track {
+  height: 10px;
+  background: #f3f4f6;
+  border-radius: 9999px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+.prog-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #fcd34d);
+  border-radius: 9999px;
+  transition: width .7s;
+}
+.prog-fill-green {
+  background: linear-gradient(90deg, #34d399, #6ee7b7);
+}
+
+.sec-label { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; color: #9ca3af; margin-bottom: 10px; }
+.sec-label strong { color: #d97706; }
+
+.dots-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+.ldot {
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Baloo 2','Noto Sans KR',sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  position: relative;
+  background: #e5e7eb;
+  color: #6b7280;
+}
+.ldot.pass { background: #4ade80; color: white; }
+.ldot.attempt { background: #fbbf24; color: white; }
+.ldot .badge {
+  position: absolute; top: -4px; right: -4px;
+  width: 13px; height: 13px;
+  border-radius: 9999px;
+  font-size: 7px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,.6);
+}
+.ldot.pass .badge { background: #16a34a; color: white; }
+.ldot.attempt .badge { background: #d97706; color: white; }
+
+.legend { display: flex; gap: 20px; font-size: 12px; color: #9ca3af; }
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.legend-dot { width: 12px; height: 12px; border-radius: 4px; }
+
+/* ═══════════════════════════════════════════════════
+   PRACTICE MODE SELECT
+═══════════════════════════════════════════════════ */
+#screen-practice .app-inner {
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.back-header { display: flex; align-items: center; gap: 16px; }
+.back-btn {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  box-shadow: 0 1px 4px rgba(0,0,0,.07);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+.back-btn:hover { background: #f9fafb; }
+.back-header .title { font-size: 28px; font-weight: 800; }
+.back-header .sub { font-size: 14px; color: #9ca3af; margin-top: 2px; }
+
+.mascot-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: white;
+  border-radius: 20px;
+  padding: 18px 24px;
+  border: 1px solid #fde68a;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.mascot-row .m { font-size: 44px; animation: float 3s ease-in-out infinite; user-select: none; }
+.mascot-row .txt p:first-child { font-size: 17px; font-weight: 700; }
+.mascot-row .txt p:last-child { font-size: 13px; color: #9ca3af; margin-top: 3px; }
+
+.mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.mode-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 28px;
+  padding: 32px 32px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  text-align: left;
+  transition: transform .15s, box-shadow .15s;
+}
+.mode-card:hover { transform: translateY(-3px); }
+.mode-card:active { transform: scale(.97); }
+.mode-card .mc-title { font-family:'Baloo 2','Noto Sans KR',sans-serif; font-size: 36px; font-weight: 800; }
+.mode-card .mc-sub { font-size: 14px; opacity: .85; margin-top: 8px; }
+.mode-card .mc-progress { font-size: 13px; font-weight: 700; opacity: .9; margin-top: 8px; }
+.mode-card .mc-letter { font-family:'Baloo 2','Noto Sans KR',sans-serif; font-size: 72px; font-weight: 800; opacity: .75; user-select: none; }
+.mc-amber { background: linear-gradient(135deg, #f59e0b, #fb923c); box-shadow: 0 16px 40px rgba(245,158,11,.35); }
+.mc-sky { background: linear-gradient(135deg, #38bdf8, #60a5fa); box-shadow: 0 16px 40px rgba(56,189,248,.30); }
+
+/* ═══════════════════════════════════════════════════
+   LETTER GRID
+═══════════════════════════════════════════════════ */
+#screen-grid .app-inner {
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.start-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #f59e0b, #fcd34d);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 20px 32px;
+  font-family: 'Baloo 2','Noto Sans KR',sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(245,158,11,.35);
+  transition: transform .15s;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+.start-btn:hover { transform: translateY(-2px); }
+
+@keyframes pulse-glow {
+  0%,100% { box-shadow: 0 8px 24px rgba(245,158,11,.35); }
+  50% { box-shadow: 0 8px 36px rgba(245,158,11,.55); }
+}
+
+.letter-grid-row {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 8px;
+}
+.lbadge {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Baloo 2','Noto Sans KR',sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+  cursor: pointer;
+  transition: transform .12s;
+  border: 2px solid #e5e7eb;
+  background: white;
+  color: #4b5563;
+}
+.lbadge:hover { transform: scale(1.08); border-color: #fbbf24; background: #fffbeb; }
+.lbadge.pass { background: #4ade80; border-color: #4ade80; color: white; }
+.lbadge.attempt { background: #fbbf24; border-color: #fbbf24; color: white; }
+.lbadge .lbadge-mark {
+  position: absolute; top: -5px; right: -5px;
+  width: 16px; height: 16px;
+  border-radius: 9999px;
+  font-size: 9px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1.5px solid white;
+  font-weight: 900;
+}
+.lbadge.pass .lbadge-mark { background: #16a34a; color: white; }
+.lbadge.attempt .lbadge-mark { background: #d97706; color: white; }
+
+/* ═══════════════════════════════════════════════════
+   PRACTICE LETTER (DRAWING)
+═══════════════════════════════════════════════════ */
+#screen-letter .app-inner {
+  padding: 32px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.letter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.letter-header .lh-center { text-align: center; }
+.letter-header .lh-title {
+  font-family: 'Baloo 2','Noto Sans KR',sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+}
+.letter-header .lh-title span { color: #f59e0b; font-size: 34px; }
+.letter-header .lh-sub { font-size: 12px; color: #9ca3af; margin-top: 2px; }
+.pdots { display: flex; gap: 5px; align-items: center; }
+.pdot { width: 8px; height: 8px; border-radius: 9999px; background: #d1d5db; }
+.pdot.cur { width: 12px; height: 12px; background: #f59e0b; }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 24px;
+  align-items: start;
+}
+.canvas-col { display: flex; flex-direction: column; gap: 12px; }
+
+canvas#drawCanvas {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+  cursor: crosshair;
+  touch-action: none;
+  user-select: none;
+  display: block;
+  background: white;
+}
+
+.clear-btn {
+  width: 100%;
+  padding: 14px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Nunito','Noto Sans KR',sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #6b7280;
+  cursor: pointer;
+  transition: background .15s;
+}
+.clear-btn:hover { background: #e5e7eb; }
+
+.controls-col { display: flex; flex-direction: column; gap: 16px; }
+.hint-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: white;
+  border-radius: 16px;
+  padding: 16px 18px;
+  border: 1px solid #fde68a;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.hint-box .hm { font-size: 28px; animation: float 3s ease-in-out infinite; user-select: none; flex-shrink: 0; }
+.hint-box p { font-size: 14px; line-height: 1.65; color: #374151; padding-top: 2px; }
+
+.toolbar { display: flex; gap: 10px; }
+.tool-btn {
+  flex: 1;
+  padding: 12px 8px;
+  border-radius: 12px;
+  border: none;
+  font-family: 'Nunito','Noto Sans KR',sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  transition: background .15s;
+}
+.tool-btn.purple { background: #ede9fe; color: #7c3aed; }
+.tool-btn.purple:hover { background: #ddd6fe; }
+.tool-btn.sky { background: #e0f2fe; color: #0369a1; }
+.tool-btn.sky:hover { background: #bae6fd; }
+.tool-btn.gray { background: #f3f4f6; color: #6b7280; }
+.tool-btn.gray:hover { background: #e5e7eb; }
+
+.submit-btn {
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-family: 'Baloo 2','Noto Sans KR',sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(52,211,153,.40);
+  transition: transform .15s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.submit-btn:hover { transform: translateY(-2px); }
+.submit-btn:active { transform: scale(.97); }
+
+.nav-btns { display: flex; gap: 10px; margin-top: auto; }
+.nav-small {
+  flex: 1;
+  padding: 12px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  font-family: 'Nunito','Noto Sans KR',sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #6b7280;
+  cursor: pointer;
+  transition: background .15s;
+}
+.nav-small:hover { background: #f9fafb; }
+.nav-small:disabled { opacity: .3; cursor: default; }
+
+/* Result overlay */
+.result-overlay {
+  border-radius: 24px;
+  padding: 24px;
+  text-align: center;
+  border: 4px solid;
+}
+.result-pass { background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-color: #86efac; }
+.result-fail { background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fcd34d; }
+.result-stars { display: flex; justify-content: center; gap: 8px; margin-bottom: 12px; }
+.result-stars span { font-size: 36px; animation: pop-in .4s cubic-bezier(.36,.07,.19,.97) both; }
+.result-letter { font-family: 'Baloo 2','Noto Sans KR',sans-serif; font-size: 64px; font-weight: 800; color: #16a34a; }
+.result-title { font-family: 'Baloo 2','Noto Sans KR',sans-serif; font-size: 24px; font-weight: 800; color: #15803d; margin: 8px 0; }
+.result-msg { font-size: 14px; color: #166534; margin-bottom: 16px; }
+.result-btns { display: flex; gap: 10px; }
+.r-retry { flex: 1; padding: 14px; background: white; border: 2px solid #86efac; border-radius: 14px; color: #16a34a; font-family: 'Nunito','Noto Sans KR',sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; }
+.r-next { flex: 1; padding: 14px; background: #22c55e; border: none; border-radius: 14px; color: white; font-family: 'Nunito','Noto Sans KR',sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; }
+
+/* ═══════════════════════════════════════════════════
+   QUIZ INTRO
+═══════════════════════════════════════════════════ */
+#screen-quiz .app-inner {
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.quiz-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+.quiz-left { display: flex; flex-direction: column; gap: 16px; }
+.mode-pick-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-radius: 16px;
+  border: 2px solid #e5e7eb;
+  background: white;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.mode-pick-btn:hover { border-color: #fbbf24; }
+.mode-pick-btn.sel-amber { border-color: #fbbf24; background: #fffbeb; box-shadow: 0 4px 16px rgba(251,191,36,.2); }
+.mode-pick-btn.sel-sky { border-color: #38bdf8; background: #f0f9ff; box-shadow: 0 4px 16px rgba(56,189,248,.2); }
+.mode-pick-btn.sel-purple { border-color: #a78bfa; background: #faf5ff; box-shadow: 0 4px 16px rgba(167,139,250,.2); }
+.mode-pick-btn .mp-title { font-family: 'Baloo 2','Noto Sans KR',sans-serif; font-size: 18px; font-weight: 700; text-align: left; }
+.mode-pick-btn .mp-sub { font-size: 13px; color: #9ca3af; margin-top: 3px; text-align: left; }
+.mode-pick-btn .mp-letter { font-family: 'Baloo 2','Noto Sans KR',sans-serif; font-size: 36px; font-weight: 800; color: #d1d5db; }
+
+.quiz-start-panel {
+  background: white;
+  border-radius: 28px;
+  padding: 40px 32px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+.quiz-start-panel .big-icon { font-size: 80px; user-select: none; }
+.quiz-start-panel .qs-title { font-family: 'Baloo 2','Noto Sans KR',sans-serif; font-size: 26px; font-weight: 800; }
+.quiz-start-panel .qs-sub { font-size: 14px; color: #9ca3af; }
+.quiz-start-btn {
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(135deg, #38bdf8, #60a5fa);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-family: 'Baloo 2','Noto Sans KR',sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(56,189,248,.35);
+  transition: transform .15s;
+}
+.quiz-start-btn:hover { transform: translateY(-2px); }
+
+/* ═══════════════════════════════════════════════════
+   QUIZ QUESTION
+═══════════════════════════════════════════════════ */
+#screen-question .app-inner {
+  padding: 32px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.quiz-prog-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.quiz-prog-row .qp-label { font-size: 14px; color: #9ca3af; white-space: nowrap; }
+.quiz-prog-row .qp-label strong { color: var(--navy); }
+.quiz-prog-row .qp-right { font-size: 14px; font-weight: 700; color: #d97706; white-space: nowrap; }
+.quiz-prog-track {
+  flex: 1;
+  height: 10px;
+  background: #f3f4f6;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.quiz-prog-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #fcd34d);
+  border-radius: 9999px;
+  width: 30%;
+  transition: width .3s;
+}
+
+.quiz-two-col {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 24px;
+  align-items: start;
+}
+.quiz-canvas-wrap { position: relative; }
+canvas#quizCanvas {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+  cursor: crosshair;
+  touch-action: none;
+  user-select: none;
+  display: block;
+  background: white;
+}
+
+.quiz-controls { display: flex; flex-direction: column; justify-content: space-between; gap: 16px; }
+.quiz-letter-prompt {
+  background: white;
+  border-radius: 20px;
+  padding: 28px 24px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  text-align: center;
+}
+.quiz-letter-prompt .ql-hint { font-size: 14px; color: #9ca3af; margin-bottom: 8px; }
+.quiz-letter-prompt .ql-letter {
+  font-family: 'Baloo 2','Noto Sans KR',sans-serif;
+  font-size: 100px;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1;
+  animation: pop-in .4s both;
+}
+.quiz-letter-prompt .ql-type { font-size: 13px; color: #9ca3af; margin-top: 6px; }
+
+.quiz-action-btns { display: flex; flex-direction: column; gap: 10px; }
+.grade-btn {
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(135deg, #f59e0b, #fb923c);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-family: 'Baloo 2','Noto Sans KR',sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(245,158,11,.35);
+  transition: transform .15s;
+}
+.grade-btn:hover { transform: translateY(-2px); }
+.skip-btn {
+  width: 100%;
+  padding: 16px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Nunito','Noto Sans KR',sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #6b7280;
+  cursor: pointer;
+  transition: background .15s;
+}
+.skip-btn:hover { background: #e5e7eb; }
+.quiz-clear-btn { text-align: center; color: #9ca3af; font-size: 13px; cursor: pointer; padding: 8px; }
+.quiz-clear-btn:hover { color: #6b7280; }
+
+/* ═══════════════════════════════════════════════════
+   QUIZ RESULT
+═══════════════════════════════════════════════════ */
+#screen-result .app-inner {
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.result-grid { display: grid; grid-template-columns: 2fr 3fr; gap: 32px; align-items: start; }
+
+.score-card {
+  background: linear-gradient(135deg, #f0f9ff, #dbeafe);
+  border-radius: 28px;
+  padding: 40px 32px;
+  border: 2px solid #bae6fd;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+.score-stars { display: flex; gap: 10px; }
+.score-stars span { font-size: 44px; animation: pop-in .4s both; }
+.score-stars span.dim { opacity: .2; }
+.score-num {
+  font-family: 'Baloo 2','Noto Sans KR',sans-serif;
+  font-size: 80px;
+  font-weight: 800;
+  color: #0284c7;
+  line-height: 1;
+}
+.score-num small { font-size: 36px; color: #7dd3fc; }
+.score-msg {
+  font-family: 'Nunito','Noto Sans KR',sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0369a1;
+}
+.score-btns { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+.retry-btn-2 {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #38bdf8, #60a5fa);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Baloo 2','Noto Sans KR',sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(56,189,248,.30);
+}
+.home-btn {
+  width: 100%;
+  padding: 14px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  font-family: 'Nunito','Noto Sans KR',sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.breakdown-card {
+  background: white;
+  border-radius: 28px;
+  padding: 28px 28px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+}
+.breakdown-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 16px; }
+.breakdown-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.bk-badge {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Baloo 2','Noto Sans KR',sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+}
+.bk-badge.ok { background: #dcfce7; color: #15803d; }
+.bk-badge.ng { background: #fee2e2; color: #dc2626; }
+.bk-badge .bk-mark { position: absolute; top: -4px; right: -4px; font-size: 11px; }
+.wrong-box {
+  margin-top: 20px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 16px;
+  padding: 16px 20px;
+}
+.wrong-box p { font-size: 13px; font-weight: 700; color: #92400e; margin-bottom: 10px; }
+.wrong-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.wrong-pill {
+  background: #fde68a;
+  color: #92400e;
+  font-family: 'Baloo 2','Noto Sans KR',sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 10px;
+}
+
+/* ═══════════════════════════════════════════════════
+   SHARED ANIMATIONS
+═══════════════════════════════════════════════════ */
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes pop-in {
+  0% { transform: scale(0); opacity: 0; }
+  70% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Stroke modal */
+.modal-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.modal-backdrop.show { display: flex; }
+.modal-box {
+  background: white;
+  border-radius: 24px;
+  padding: 32px;
+  width: 340px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.20);
+}
+.modal-box h3 { font-size: 20px; font-weight: 700; margin-bottom: 16px; }
+.modal-svg-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  position: relative;
+}
+.modal-svg-wrap svg { width: 100%; height: 100%; }
+.modal-close {
+  margin-top: 16px;
+  width: 100%;
+  padding: 14px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Nunito','Noto Sans KR',sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #374151;
+  cursor: pointer;
+}
+
+/* Confetti */
+.confetti-piece {
+  position: fixed;
+  width: 10px; height: 10px;
+  border-radius: 2px;
+  pointer-events: none;
+  animation: confetti-fall linear forwards;
+  z-index: 200;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── SCREEN NAVIGATION ──────────────────────────── -->
+<div class="screen-nav">
+  <span>화면 선택 ▶</span>
+  <button class="nav-btn active" onclick="showScreen('home')">🏠 홈</button>
+  <button class="nav-btn" onclick="showScreen('practice')">✏️ 연습 모드 선택</button>
+  <button class="nav-btn" onclick="showScreen('grid')">🔤 글자 목록</button>
+  <button class="nav-btn" onclick="showScreen('letter')">✍️ 쓰기 연습</button>
+  <button class="nav-btn" onclick="showScreen('quiz')">🎯 퀴즈 인트로</button>
+  <button class="nav-btn" onclick="showScreen('question')">📝 퀴즈 문제</button>
+  <button class="nav-btn" onclick="showScreen('result')">🏆 퀴즈 결과</button>
+</div>
+
+<!-- ── BROWSER CHROME ─────────────────────────────── -->
+<div class="browser-wrap">
+  <div class="browser-chrome">
+    <div class="dots">
+      <div class="dot dot-r"></div>
+      <div class="dot dot-y"></div>
+      <div class="dot dot-g"></div>
+    </div>
+    <div class="url-bar" id="urlBar">localhost:3000/</div>
+  </div>
+
+  <div class="app-container">
+
+    <!-- ════════════════ HOME ════════════════ -->
+    <div class="screen active" id="screen-home">
+      <div class="app-inner">
+        <div class="home-hero">
+          <div class="mascot">🦊</div>
+          <div>
+            <h1 class="font-baloo">알파벳 쓰기 연습</h1>
+            <p>영어 4칸 노트로 배워요!</p>
+          </div>
+        </div>
+
+        <div class="home-cols">
+          <!-- Left: Buttons -->
+          <div class="action-col">
+            <button class="card-btn btn-amber" onclick="showScreen('practice')">
+              <div>
+                <div class="btn-title">연습하기</div>
+                <div class="btn-sub">알파벳 쓰기 연습</div>
+              </div>
+              <span class="btn-icon">✏️</span>
+            </button>
+
+            <button class="card-btn btn-sky" onclick="showScreen('quiz')">
+              <div>
+                <div class="btn-title">퀴즈 풀기</div>
+                <div class="btn-sub">실력 확인 퀴즈</div>
+              </div>
+              <span class="btn-icon">🎯</span>
+            </button>
+
+            <div class="info-box">
+              💡 <strong>4칸 노트</strong>에 글자를 써요!<br>
+              대문자는 위쪽 두 칸, 소문자는 가운데 칸에 써야 해요.
+            </div>
+            <p style="font-size:12px;color:#9ca3af;text-align:center;padding-top:4px;">
+              열심히 연습해서 알파벳 마스터가 되자! 🌟
+            </p>
+          </div>
+
+          <!-- Right: Progress -->
+          <div class="progress-card">
+            <h2 class="font-baloo">📊 내 진행 현황</h2>
+
+            <div class="prog-bar-wrap">
+              <div class="prog-label"><span>전체 진행 현황</span><strong>8/52 완료</strong></div>
+              <div class="prog-track"><div class="prog-fill" style="width:15%"></div></div>
+            </div>
+
+            <div class="sec-label"><span>대문자 A – Z</span><strong>5/26</strong></div>
+            <div class="dots-grid" id="upperDots"></div>
+
+            <div class="sec-label" style="margin-top:16px"><span>소문자 a – z</span><strong>3/26</strong></div>
+            <div class="dots-grid" id="lowerDots"></div>
+
+            <div class="legend">
+              <div class="legend-item"><div class="legend-dot" style="background:#4ade80"></div>완료</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#fbbf24"></div>도전 중</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#e5e7eb"></div>미도전</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════ PRACTICE MODE ════════════════ -->
+    <div class="screen" id="screen-practice">
+      <div class="app-inner">
+        <div class="back-header">
+          <button class="back-btn" onclick="showScreen('home')">←</button>
+          <div>
+            <div class="title font-baloo">연습하기</div>
+            <div class="sub">어떤 알파벳을 연습할까요?</div>
+          </div>
+        </div>
+
+        <div class="mascot-row">
+          <div class="m">🦊</div>
+          <div class="txt">
+            <p>대문자 또는 소문자를 선택하세요!</p>
+            <p>각 글자를 직접 쓰면서 획순을 익혀요</p>
+          </div>
+        </div>
+
+        <div class="mode-grid">
+          <button class="mode-card mc-amber" onclick="showScreen('grid', null, true)">
+            <div>
+              <div class="mc-title">대문자</div>
+              <div class="mc-sub">A, B, C ... Z</div>
+              <div class="mc-progress">5 / 26 완료 ✓</div>
+            </div>
+            <div class="mc-letter">Aa</div>
+          </button>
+
+          <button class="mode-card mc-sky" onclick="showScreen('grid', null, false)">
+            <div>
+              <div class="mc-title">소문자</div>
+              <div class="mc-sub">a, b, c ... z</div>
+              <div class="mc-progress">아직 시작 전이에요!</div>
+            </div>
+            <div class="mc-letter">aa</div>
+          </button>
+        </div>
+
+        <div class="info-box">
+          💡 <strong>4칸 노트</strong>에 글자를 써요! 대문자는 위쪽 두 칸, 소문자는 가운데 칸에 써야 해요.
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════ LETTER GRID ════════════════ -->
+    <div class="screen" id="screen-grid">
+      <div class="app-inner">
+        <div class="back-header">
+          <button class="back-btn" onclick="showScreen('practice')">←</button>
+          <div>
+            <div class="title font-baloo" id="gridTitle">대문자 연습</div>
+            <div class="sub" id="gridSub">5개 완료 · 3개 도전 중 · 18개 미도전</div>
+          </div>
+        </div>
+
+        <button class="start-btn" onclick="showScreen('letter', currentIsUpper ? UPPER[0] : LOWER[0], currentIsUpper)">🚀 처음부터 순서대로 시작하기</button>
+
+        <div>
+          <div class="prog-label"><span>진행률</span><strong style="color:#16a34a">19%</strong></div>
+          <div class="prog-track"><div class="prog-fill prog-fill-green" style="width:19%"></div></div>
+        </div>
+
+        <div class="letter-grid-row" id="letterGrid"></div>
+
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#4ade80"></div>완료</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#fbbf24"></div>도전 중</div>
+          <div class="legend-item"><div class="legend-dot" style="background:white;border:2px solid #e5e7eb"></div>미도전</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════ LETTER PRACTICE ════════════════ -->
+    <div class="screen" id="screen-letter">
+      <div class="app-inner">
+        <!-- Header -->
+        <div class="letter-header">
+          <button class="back-btn" onclick="showScreen('grid')">←</button>
+          <div class="lh-center">
+            <div class="lh-title font-baloo" id="letterHeadMode">대문자 <span id="letterHeadLetter">A</span></div>
+            <div class="lh-sub" id="letterHeadSub">1 / 26</div>
+          </div>
+          <div class="pdots" id="practiceDots"></div>
+        </div>
+
+        <!-- Two columns -->
+        <div class="two-col">
+          <!-- Canvas -->
+          <div class="canvas-col">
+            <canvas id="drawCanvas" width="400" height="400"></canvas>
+            <button class="clear-btn" id="clearBtn">🗑️ 지우기</button>
+          </div>
+
+          <!-- Controls -->
+          <div class="controls-col">
+            <div class="hint-box">
+              <span class="hm">🦊</span>
+              <p id="hintText">A는 산처럼 뾰족해요! 가운데 막대기도 잊지 마세요 ⛰️</p>
+            </div>
+
+            <div class="toolbar">
+              <button class="tool-btn purple" onclick="showStrokeModal()">▶ 획 순서 보기</button>
+              <button class="tool-btn sky" id="guideToggle" onclick="toggleGuide()">👁 가이드 ON</button>
+            </div>
+
+            <div id="resultArea">
+              <button class="submit-btn" onclick="submitPractice()">✅ 확인하기</button>
+            </div>
+
+            <div class="nav-btns">
+              <button class="nav-small" disabled>← 이전</button>
+              <button class="nav-small" onclick="">다음 →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════ QUIZ INTRO ════════════════ -->
+    <div class="screen" id="screen-quiz">
+      <div class="app-inner">
+        <div class="back-header">
+          <button class="back-btn" onclick="showScreen('home')">←</button>
+          <div>
+            <div class="title font-baloo">퀴즈 풀기</div>
+            <div class="sub">연습한 알파벳에서 문제가 나와요</div>
+          </div>
+        </div>
+
+        <div class="quiz-cols">
+          <div class="quiz-left">
+            <div class="mascot-row">
+              <div class="m">🎯</div>
+              <div class="txt">
+                <p>퀴즈로 실력을 확인해요!</p>
+                <p>모드를 선택하고 시작하세요</p>
+              </div>
+            </div>
+
+            <p class="font-baloo" style="font-size:18px;font-weight:700;">모드 선택</p>
+
+            <button class="mode-pick-btn sel-amber" onclick="selectMode(this,'amber')">
+              <div>
+                <div class="mp-title">대문자</div>
+                <div class="mp-sub">5개 연습함</div>
+              </div>
+              <div class="mp-letter">Aa</div>
+            </button>
+
+            <button class="mode-pick-btn" onclick="selectMode(this,'sky')">
+              <div>
+                <div class="mp-title">소문자</div>
+                <div class="mp-sub">3개 연습함</div>
+              </div>
+              <div class="mp-letter">aa</div>
+            </button>
+
+            <button class="mode-pick-btn" onclick="selectMode(this,'purple')">
+              <div>
+                <div class="mp-title">혼합</div>
+                <div class="mp-sub">대문자 + 소문자 섞어서</div>
+              </div>
+              <div class="mp-letter" style="font-size:28px;">Aa+aa</div>
+            </button>
+          </div>
+
+          <div class="quiz-start-panel">
+            <div class="big-icon">🅰️</div>
+            <div class="qs-title font-baloo">대문자 퀴즈</div>
+            <div class="qs-sub">총 5문제가 출제됩니다</div>
+            <button class="quiz-start-btn" onclick="showScreen('question')">🎯 퀴즈 시작!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════ QUIZ QUESTION ════════════════ -->
+    <div class="screen" id="screen-question">
+      <div class="app-inner">
+        <div class="quiz-prog-row">
+          <button class="back-btn" onclick="showScreen('quiz')">←</button>
+          <div class="qp-label">문제 <strong>3</strong> / 5</div>
+          <div class="quiz-prog-track">
+            <div class="quiz-prog-fill" style="width:40%"></div>
+          </div>
+          <div class="qp-right">2개 정답</div>
+        </div>
+
+        <div class="quiz-two-col">
+          <!-- Canvas -->
+          <div class="quiz-canvas-wrap">
+            <canvas id="quizCanvas" width="400" height="400"></canvas>
+          </div>
+
+          <!-- Controls -->
+          <div class="quiz-controls">
+            <div class="quiz-letter-prompt">
+              <div class="ql-hint">이 글자를 써보세요!</div>
+              <div class="ql-letter font-baloo">C</div>
+              <div class="ql-type">대문자</div>
+            </div>
+            <div class="quiz-action-btns">
+              <button class="grade-btn" onclick="gradeQuiz()">채점하기 ✓</button>
+              <button class="skip-btn" onclick="showScreen('result')">건너뛰기</button>
+              <div class="quiz-clear-btn" onclick="clearQuizCanvas()">🗑️ 지우기</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════ QUIZ RESULT ════════════════ -->
+    <div class="screen" id="screen-result">
+      <div class="app-inner">
+        <div class="back-header">
+          <button class="back-btn" onclick="showScreen('home')">←</button>
+          <div>
+            <div class="title font-baloo">퀴즈 결과</div>
+          </div>
+        </div>
+
+        <div class="result-grid">
+          <!-- Score -->
+          <div class="score-card">
+            <div class="score-stars">
+              <span style="animation-delay:.0s">⭐</span>
+              <span style="animation-delay:.15s">⭐</span>
+              <span class="dim">⭐</span>
+            </div>
+            <div class="score-num font-baloo">4<small>/5</small></div>
+            <div class="score-msg">잘했어요! 👏</div>
+            <div class="score-btns">
+              <button class="retry-btn-2 font-baloo" onclick="showScreen('question')">🔄 다시 도전!</button>
+              <button class="home-btn" onclick="showScreen('home')">🏠 홈으로</button>
+            </div>
+          </div>
+
+          <!-- Breakdown -->
+          <div class="breakdown-card">
+            <h3 class="font-baloo">문제별 결과</h3>
+            <div class="breakdown-grid">
+              <div class="bk-badge ok">A<span class="bk-mark">✓</span></div>
+              <div class="bk-badge ok">B<span class="bk-mark">✓</span></div>
+              <div class="bk-badge ng">C<span class="bk-mark">✗</span></div>
+              <div class="bk-badge ok">D<span class="bk-mark">✓</span></div>
+              <div class="bk-badge ok">E<span class="bk-mark">✓</span></div>
+            </div>
+            <div class="wrong-box">
+              <p>💪 틀린 글자를 다시 연습해 보세요!</p>
+              <div class="wrong-pills">
+                <span class="wrong-pill">C</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- app-container -->
+</div><!-- browser-wrap -->
+
+<!-- ── STROKE MODAL ───────────────────────────────── -->
+<div class="modal-backdrop" id="strokeModal" onclick="hideStrokeModal()">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <h3 class="font-baloo" id="strokeModalTitle">A 획 순서</h3>
+    <div class="modal-svg-wrap">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" id="strokeSvg">
+        <!-- 공책 4선: 여백 있는 인셋 스타일, 3번째 선만 빨간색 -->
+        <line x1="0" y1="18.5" x2="100" y2="18.5" stroke="#9CA3AF" stroke-width="0.8"/>
+        <line x1="0" y1="39.5" x2="100" y2="39.5" stroke="#9CA3AF" stroke-width="0.6" stroke-dasharray="4,3"/>
+        <line x1="0" y1="60.5" x2="100" y2="60.5" stroke="#EF4444" stroke-width="0.8"/>
+        <line x1="0" y1="81.5" x2="100" y2="81.5" stroke="#9CA3AF" stroke-width="0.6"/>
+        <!-- 대문자: matrix(0.5,0,0,0.5,25,25) → y=[8,92]→y=[29,71] (2번~4번선) -->
+        <g id="strokeGroup" transform="matrix(0.5, 0, 0, 0.5, 25, 14.5)"></g>
+      </svg>
+    </div>
+    <button class="modal-close" onclick="hideStrokeModal()">닫기</button>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════════ */
+const UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const LOWER = 'abcdefghijklmnopqrstuvwxyz'.split('');
+
+const upperStatus = {A:'pass',B:'pass',C:'pass',D:'attempt',E:'pass',F:'attempt',G:'attempt'};
+const lowerStatus = {a:'pass',b:'pass',c:'attempt'};
+
+const hints = {
+  A:'A는 산처럼 뾰족해요! 가운데 막대기도 잊지 마세요 ⛰️',
+  B:'B는 배가 볼록볼록! 위아래 동그라미 두 개예요 🎈',
+  C:'C는 달처럼 둥글게! 입이 오른쪽으로 열려있어요 🌙',
+  D:'D는 세로줄에 큰 배가 붙었어요! 오른쪽이 볼록해요 🚢',
+  E:'E는 빗처럼 막대기 세 개! 위, 가운데, 아래에요 ✨',
+};
+
+const uppercaseStrokes = {
+  A:['M 50,8 L 15,92','M 50,8 L 85,92','M 26,58 L 74,58'],
+  B:['M 20,8 L 20,92','M 20,8 C 58,8 58,50 20,50','M 20,50 C 62,50 62,92 20,92'],
+  C:['M 80,22 A 36,40 0 1 0 80,78'],
+  D:['M 20,8 L 20,92','M 20,8 C 80,8 80,92 20,92'],
+  E:['M 20,8 L 20,92','M 20,8 L 80,8','M 20,50 L 68,50','M 20,92 L 80,92'],
+  F:['M 20,8 L 20,92','M 20,8 L 80,8','M 20,48 L 68,48'],
+  G:['M 80,22 A 36,40 0 1 0 80,68 L 55,68 L 55,52'],
+  H:['M 20,8 L 20,92','M 80,8 L 80,92','M 20,50 L 80,50'],
+  I:['M 35,8 L 65,8','M 50,8 L 50,92','M 35,92 L 65,92'],
+  J:['M 35,8 L 65,8','M 65,8 L 65,72 Q 65,92 45,92 Q 25,92 25,72'],
+  K:['M 20,8 L 20,92','M 20,50 L 80,8','M 44,32 L 80,92'],
+  L:['M 20,8 L 20,92','M 20,92 L 80,92'],
+  M:['M 15,92 L 15,8','M 15,8 L 50,55','M 50,55 L 85,8','M 85,8 L 85,92'],
+  N:['M 20,92 L 20,8','M 20,8 L 80,92','M 80,8 L 80,92'],
+  O:['M 50,8 C 85,8 85,92 50,92 C 15,92 15,8 50,8'],
+  P:['M 20,8 L 20,92','M 20,8 C 72,8 72,50 20,50'],
+  Q:['M 50,8 C 85,8 85,92 50,92 C 15,92 15,8 50,8','M 60,70 L 82,90'],
+  R:['M 20,8 L 20,92','M 20,8 C 72,8 72,50 20,50','M 45,50 L 80,92'],
+  S:['M 78,22 C 78,8 22,8 22,48 C 22,58 78,58 78,78 C 78,92 22,92 22,78'],
+  T:['M 15,8 L 85,8','M 50,8 L 50,92'],
+  U:['M 20,8 L 20,72 Q 20,92 50,92 Q 80,92 80,72 L 80,8'],
+  V:['M 15,8 L 50,92','M 85,8 L 50,92'],
+  W:['M 10,8 L 30,92','M 30,92 L 50,48','M 50,48 L 70,92','M 70,92 L 90,8'],
+  X:['M 15,8 L 85,92','M 85,8 L 15,92'],
+  Y:['M 15,8 L 50,50','M 85,8 L 50,50','M 50,50 L 50,92'],
+  Z:['M 15,8 L 85,8','M 85,8 L 15,92','M 15,92 L 85,92'],
+};
+const lowercaseStrokes = {
+  a:['M 62,54 C 62,46 18,46 18,62 C 18,77 62,77 62,62','M 62,54 L 62,77'],
+  b:['M 22,12 L 22,77','M 22,55 C 22,47 68,47 68,62 C 68,77 22,77 22,62'],
+  c:['M 65,58 C 65,47 18,47 18,62 C 18,77 65,77 65,70'],
+  d:['M 62,54 C 62,46 18,46 18,62 C 18,77 62,77 62,62','M 62,12 L 62,77'],
+  e:['M 18,62 L 65,62 C 65,47 18,47 18,62 C 18,77 63,77 63,70'],
+  f:['M 65,24 C 65,10 28,10 28,38 L 28,77','M 12,55 L 54,55'],
+  g:['M 65,54 C 65,46 18,46 18,62 C 18,77 65,77 65,62','M 65,54 L 65,90 C 65,98 22,98 22,87'],
+  h:['M 20,12 L 20,77','M 20,60 C 20,47 68,47 68,58 L 68,77'],
+  i:['M 42,52 L 42,77','M 40,43 L 44,43'],
+  j:['M 52,52 L 52,90 C 52,100 18,100 18,88','M 50,43 L 54,43'],
+  k:['M 20,12 L 20,77','M 20,60 L 65,50','M 43,56 L 65,77'],
+  l:['M 40,12 L 40,77'],
+  m:['M 14,55 L 14,77','M 14,55 C 14,47 34,47 34,57 L 34,77','M 34,57 C 34,47 68,47 68,57 L 68,77'],
+  n:['M 18,55 L 18,77','M 18,55 C 18,47 65,47 65,57 L 65,77'],
+  o:['M 42,50 C 18,50 18,77 42,77 C 66,77 66,50 42,50'],
+  p:['M 22,55 C 22,47 68,47 68,62 C 68,77 22,77 22,62','M 22,52 L 22,95'],
+  q:['M 65,54 C 65,46 18,46 18,62 C 18,77 65,77 65,62','M 65,52 L 65,95'],
+  r:['M 20,55 L 20,77','M 20,55 C 20,47 65,47 65,58'],
+  s:['M 65,55 C 65,47 18,47 18,59 C 18,67 65,67 65,73 C 65,80 18,80 18,74'],
+  t:['M 42,18 L 42,77','M 22,53 L 62,53'],
+  u:['M 20,52 L 20,68 C 20,80 65,80 65,68 L 65,52'],
+  v:['M 18,52 L 42,77','M 68,52 L 42,77'],
+  w:['M 12,52 L 28,77','M 28,77 L 42,62','M 42,62 L 58,77','M 58,77 L 76,52'],
+  x:['M 18,52 L 65,77','M 65,52 L 18,77'],
+  y:['M 18,52 L 42,70','M 68,52 L 42,70 L 28,95'],
+  z:['M 18,52 L 65,52','M 65,52 L 18,77','M 18,77 L 65,77'],
+};
+
+const screenUrls = {
+  home:'localhost:3000/',
+  practice:'localhost:3000/practice',
+  grid:'localhost:3000/practice/uppercase',
+  letter:'localhost:3000/practice/uppercase/A',
+  quiz:'localhost:3000/quiz',
+  question:'localhost:3000/quiz (문제 3/5)',
+  result:'localhost:3000/quiz (결과)',
+};
+
+/* ═══════════════════════════════════════════════════
+   SCREEN NAVIGATION
+═══════════════════════════════════════════════════ */
+let currentLetter = 'A';
+let currentIsUpper = true;
+
+function showScreen(id, letter, isUpper) {
+  // 글자·모드 업데이트 (전달된 경우에만)
+  if (letter !== undefined) currentLetter = letter;
+  if (isUpper !== undefined) currentIsUpper = isUpper;
+
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  const btn = [...document.querySelectorAll('.nav-btn')].find(b => b.getAttribute('onclick').includes("'"+id+"'"));
+  if (btn) btn.classList.add('active');
+
+  // 글자 그리드 화면: 대문자/소문자 업데이트
+  if (id === 'grid') {
+    renderLetterGrid();
+    const statusMap = currentIsUpper ? upperStatus : lowerStatus;
+    const letters = currentIsUpper ? UPPER : LOWER;
+    const passed = letters.filter(l => statusMap[l] === 'pass').length;
+    const attempted = letters.filter(l => statusMap[l] === 'attempt').length;
+    document.getElementById('gridTitle').textContent = (currentIsUpper ? '대문자' : '소문자') + ' 연습';
+    document.getElementById('gridSub').textContent = `${passed}개 완료 · ${attempted}개 도전 중 · ${26 - passed - attempted}개 미도전`;
+  }
+
+  // 쓰기 연습 화면: 선택된 글자로 헤더·힌트 업데이트
+  if (id === 'letter') {
+    const letters = currentIsUpper ? UPPER : LOWER;
+    const idx = letters.indexOf(currentLetter);
+    document.getElementById('letterHeadLetter').textContent = currentLetter;
+    document.getElementById('letterHeadMode').firstChild.textContent = currentIsUpper ? '대문자 ' : '소문자 ';
+    document.getElementById('letterHeadSub').textContent = `${idx + 1} / ${letters.length}`;
+    document.getElementById('hintText').textContent = hints[currentLetter] || `${currentLetter}를 써보세요!`;
+    document.getElementById('urlBar').textContent = `localhost:3000/practice/${currentIsUpper?'uppercase':'lowercase'}/${currentLetter}`;
+    renderPracticeDots(idx);
+    initCanvas();
+    document.getElementById('resultArea').innerHTML = '<button class="submit-btn" onclick="submitPractice()">✅ 확인하기</button>';
+  } else {
+    document.getElementById('urlBar').textContent = screenUrls[id] || 'localhost:3000/';
+  }
+  if (id === 'question') { initQuizCanvas(); }
+}
+
+/* ═══════════════════════════════════════════════════
+   RENDER DOTS (Home)
+═══════════════════════════════════════════════════ */
+function renderDots(containerId, letters, statusMap) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = letters.map(l => {
+    const st = statusMap[l] || '';
+    const badge = st === 'pass' ? `<span class="badge">✓</span>` : st === 'attempt' ? `<span class="badge">·</span>` : '';
+    return `<div class="ldot ${st}" title="${l}: ${st||'미도전'}">${l}${badge}</div>`;
+  }).join('');
+}
+
+/* ═══════════════════════════════════════════════════
+   RENDER LETTER GRID
+═══════════════════════════════════════════════════ */
+function renderLetterGrid() {
+  const el = document.getElementById('letterGrid');
+  if (!el) return;
+  const letters = currentIsUpper ? UPPER : LOWER;
+  const statusMap = currentIsUpper ? upperStatus : lowerStatus;
+  el.innerHTML = letters.map(l => {
+    const st = statusMap[l] || '';
+    const mark = st === 'pass' ? `<span class="lbadge-mark">✓</span>` : st === 'attempt' ? `<span class="lbadge-mark">!</span>` : '';
+    return `<div class="lbadge ${st}" onclick="showScreen('letter','${l}',${currentIsUpper})">${l}${mark}</div>`;
+  }).join('');
+}
+
+/* ═══════════════════════════════════════════════════
+   RENDER PRACTICE DOTS
+═══════════════════════════════════════════════════ */
+function renderPracticeDots(currentIdx) {
+  const el = document.getElementById('practiceDots');
+  if (!el) return;
+  const letters = currentIsUpper ? UPPER : LOWER;
+  const idx = currentIdx ?? letters.indexOf(currentLetter);
+  const start = Math.max(0, idx - 3);
+  const slice = letters.slice(start, start + 7);
+  el.innerHTML = slice.map((l) =>
+    `<div class="pdot ${l === currentLetter ? 'cur' : ''}"></div>`
+  ).join('');
+}
+
+/* ═══════════════════════════════════════════════════
+   DRAWING CANVAS (Practice)
+═══════════════════════════════════════════════════ */
+let practiceCtx, practiceIsDrawing = false, practiceStrokes = [];
+let practiceCurrentStroke = [], practiceAllPoints = [];
+let showGuide = true;
+
+const W = 400, H = 400;
+// 4선 위치: 노트 상하에 여백을 둔 실제 공책 스타일 (8%/29%/50%/71%/92%)
+// 4선: 캔버스 정중앙 배치. 1번(18.5%) 회색, 2번(39.5%) 회색파선, 3번(60.5%) 빨강, 4번(81.5%) 회색
+const LINE_POSITIONS = [0.185, 0.395, 0.605, 0.815];
+
+function drawPracticeBackground(ctx) {
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0,0,W,H);
+  LINE_POSITIONS.forEach((pct,i) => {
+    const y = pct*H;
+    ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y);
+    ctx.lineWidth = 1.5;
+    if (i === 2) {
+      ctx.setLineDash([]); ctx.strokeStyle = '#EF4444';       // 3번: 빨강
+    } else if (i === 1) {
+      ctx.setLineDash([10,7]); ctx.strokeStyle = '#9CA3AF';   // 2번: 회색 파선
+    } else {
+      ctx.setLineDash([]); ctx.strokeStyle = '#9CA3AF';       // 1·4번: 회색 실선
+    }
+    ctx.stroke(); ctx.setLineDash([]);
+  });
+}
+
+function drawGhost(ctx, letter, isUpper) {
+  ctx.save();
+  // 대문자: 2번선(29%)~4번선(71%), baseline at 4번선(71%). fontSize≈H*0.583
+  // 소문자: x높이 3번선(50%)~4번선(71%), baseline at 4번선(71%).
+  const fs = isUpper ? H*0.583 : H*0.40;
+  const by = H * 0.605;
+  ctx.font = `bold ${fs}px Arial,sans-serif`;
+  ctx.textAlign='center'; ctx.textBaseline='alphabetic';
+  ctx.fillStyle='rgba(100,150,255,.13)';
+  ctx.fillText(letter, W/2, by);
+  ctx.restore();
+}
+
+function redrawPractice() {
+  if (!practiceCtx) return;
+  drawPracticeBackground(practiceCtx);
+  if (showGuide) drawGhost(practiceCtx, currentLetter, currentIsUpper);
+  practiceCtx.strokeStyle='#1E1B4B'; practiceCtx.lineWidth=5;
+  practiceCtx.lineCap='round'; practiceCtx.lineJoin='round';
+  for (const stroke of practiceStrokes) {
+    if (stroke.length<2){
+      practiceCtx.beginPath(); practiceCtx.arc(stroke[0].x,stroke[0].y,3,0,Math.PI*2);
+      practiceCtx.fillStyle='#1E1B4B'; practiceCtx.fill(); continue;
+    }
+    practiceCtx.beginPath(); practiceCtx.moveTo(stroke[0].x,stroke[0].y);
+    for(let i=1;i<stroke.length;i++){
+      const p=stroke[i-1],c=stroke[i];
+      practiceCtx.quadraticCurveTo(p.x,p.y,(p.x+c.x)/2,(p.y+c.y)/2);
+    }
+    practiceCtx.lineTo(stroke[stroke.length-1].x,stroke[stroke.length-1].y);
+    practiceCtx.stroke();
+  }
+}
+
+function getPos(canvas, e) {
+  const r = canvas.getBoundingClientRect();
+  const sx = canvas.width/r.width, sy = canvas.height/r.height;
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  return {x:(clientX-r.left)*sx, y:(clientY-r.top)*sy};
+}
+
+function initCanvas() {
+  const c = document.getElementById('drawCanvas');
+  if (!c) return;
+  practiceCtx = c.getContext('2d');
+  practiceStrokes=[]; practiceCurrentStroke=[]; practiceAllPoints=[];
+  redrawPractice();
+
+  c.onpointerdown = e => { e.preventDefault(); practiceIsDrawing=true; const p=getPos(c,e); practiceCurrentStroke=[p]; practiceAllPoints.push(p); };
+  c.onpointermove = e => {
+    if(!practiceIsDrawing) return; e.preventDefault();
+    const p=getPos(c,e), s=practiceCurrentStroke, l=s[s.length-1];
+    if((p.x-l.x)**2+(p.y-l.y)**2<4) return;
+    s.push(p); practiceAllPoints.push(p);
+    practiceCtx.strokeStyle='#1E1B4B'; practiceCtx.lineWidth=5; practiceCtx.lineCap='round'; practiceCtx.lineJoin='round';
+    practiceCtx.beginPath();
+    if(s.length>=3){const p2=s[s.length-3],p1=s[s.length-2];practiceCtx.moveTo((p2.x+p1.x)/2,(p2.y+p1.y)/2);practiceCtx.quadraticCurveTo(p1.x,p1.y,(p1.x+p.x)/2,(p1.y+p.y)/2);}
+    else{practiceCtx.moveTo(l.x,l.y);practiceCtx.lineTo(p.x,p.y);}
+    practiceCtx.stroke();
+  };
+  const endDraw = e => { if(!practiceIsDrawing)return; e.preventDefault(); practiceIsDrawing=false; if(practiceCurrentStroke.length>0){practiceStrokes.push([...practiceCurrentStroke]);practiceCurrentStroke=[];} };
+  c.onpointerup=endDraw; c.onpointerleave=endDraw; c.onpointercancel=endDraw;
+
+  document.getElementById('clearBtn').onclick = () => { practiceStrokes=[]; practiceCurrentStroke=[]; practiceAllPoints=[]; document.getElementById('resultArea').innerHTML='<button class="submit-btn" onclick="submitPractice()">✅ 확인하기</button>'; redrawPractice(); };
+  renderPracticeDots();
+}
+
+function toggleGuide() {
+  showGuide = !showGuide;
+  const btn = document.getElementById('guideToggle');
+  btn.textContent = showGuide ? '👁 가이드 ON' : '🙈 가이드 OFF';
+  btn.className = 'tool-btn ' + (showGuide ? 'sky' : 'gray');
+  redrawPractice();
+}
+
+function submitPractice() {
+  const pts = practiceAllPoints;
+  const pass = pts.length >= 20;
+  document.getElementById('resultArea').innerHTML = pass ? `
+    <div class="result-overlay result-pass">
+      <div class="result-stars"><span>⭐</span><span style="animation-delay:.15s">⭐</span><span style="animation-delay:.3s">⭐</span></div>
+      <div class="result-letter font-baloo">${currentLetter}</div>
+      <div class="result-title font-baloo">잘했어요! 🎉</div>
+      <div class="result-msg">정말 잘 썼어요! ${currentIsUpper ? '대문자' : '소문자'}를 바르게 썼어요</div>
+      <div class="result-btns">
+        <button class="r-retry" onclick="retryPractice()">🔄 다시 해보기</button>
+        <button class="r-next" onclick="showScreen('grid')">다음 글자 →</button>
+      </div>
+    </div>` : `
+    <div class="result-overlay result-fail">
+      <div style="font-size:44px;margin-bottom:8px">💪</div>
+      <div class="result-title font-baloo" style="color:#b45309">다시 해봐요!</div>
+      <div style="background:rgba(255,255,255,.7);border-radius:14px;padding:12px;margin-bottom:16px;font-size:14px;color:#92400e">${pts.length<5?'아직 아무것도 안 썼어요! 글자를 써보세요 ✏️':'글자가 너무 작아요! 더 크게 써보세요 📏'}</div>
+      <button class="submit-btn" style="background:linear-gradient(135deg,#f59e0b,#fb923c);box-shadow:0 8px 24px rgba(245,158,11,.35)" onclick="retryPractice()">🖊️ 다시 도전!</button>
+    </div>`;
+  if (pass) spawnConfetti();
+}
+
+function retryPractice() {
+  practiceStrokes=[]; practiceCurrentStroke=[]; practiceAllPoints=[];
+  document.getElementById('resultArea').innerHTML='<button class="submit-btn" onclick="submitPractice()">✅ 확인하기</button>';
+  redrawPractice();
+}
+
+/* ═══════════════════════════════════════════════════
+   QUIZ CANVAS
+═══════════════════════════════════════════════════ */
+let quizCtx, quizIsDrawing=false, quizStrokes=[], quizCurrent=[], quizPoints=[];
+
+function initQuizCanvas() {
+  const c = document.getElementById('quizCanvas');
+  if (!c||quizCtx) { if(quizCtx){quizStrokes=[];quizCurrent=[];quizPoints=[];redrawQuiz();} return; }
+  quizCtx=c.getContext('2d');
+  quizStrokes=[]; quizCurrent=[]; quizPoints=[];
+  redrawQuiz();
+  c.onpointerdown = e=>{e.preventDefault();quizIsDrawing=true;const p=getPos(c,e);quizCurrent=[p];quizPoints.push(p);};
+  c.onpointermove = e=>{
+    if(!quizIsDrawing)return;e.preventDefault();
+    const p=getPos(c,e),s=quizCurrent,l=s[s.length-1];
+    if((p.x-l.x)**2+(p.y-l.y)**2<4)return;
+    s.push(p);quizPoints.push(p);
+    quizCtx.strokeStyle='#1E1B4B';quizCtx.lineWidth=5;quizCtx.lineCap='round';quizCtx.lineJoin='round';
+    quizCtx.beginPath();
+    if(s.length>=3){const p2=s[s.length-3],p1=s[s.length-2];quizCtx.moveTo((p2.x+p1.x)/2,(p2.y+p1.y)/2);quizCtx.quadraticCurveTo(p1.x,p1.y,(p1.x+p.x)/2,(p1.y+p.y)/2);}
+    else{quizCtx.moveTo(l.x,l.y);quizCtx.lineTo(p.x,p.y);}
+    quizCtx.stroke();
+  };
+  const eq=e=>{if(!quizIsDrawing)return;e.preventDefault();quizIsDrawing=false;if(quizCurrent.length>0){quizStrokes.push([...quizCurrent]);quizCurrent=[];}};
+  c.onpointerup=eq;c.onpointerleave=eq;c.onpointercancel=eq;
+}
+
+function redrawQuiz() {
+  if(!quizCtx)return;
+  drawPracticeBackground(quizCtx);
+  quizCtx.strokeStyle='#1E1B4B';quizCtx.lineWidth=5;quizCtx.lineCap='round';quizCtx.lineJoin='round';
+  for(const stroke of quizStrokes){
+    if(stroke.length<2){quizCtx.beginPath();quizCtx.arc(stroke[0].x,stroke[0].y,3,0,Math.PI*2);quizCtx.fillStyle='#1E1B4B';quizCtx.fill();continue;}
+    quizCtx.beginPath();quizCtx.moveTo(stroke[0].x,stroke[0].y);
+    for(let i=1;i<stroke.length;i++){const p=stroke[i-1],c=stroke[i];quizCtx.quadraticCurveTo(p.x,p.y,(p.x+c.x)/2,(p.y+c.y)/2);}
+    quizCtx.lineTo(stroke[stroke.length-1].x,stroke[stroke.length-1].y);quizCtx.stroke();
+  }
+}
+
+function clearQuizCanvas(){quizStrokes=[];quizCurrent=[];quizPoints=[];redrawQuiz();}
+
+function gradeQuiz() {
+  const pass = quizPoints.length >= 20;
+  const wrap = document.querySelector('.quiz-canvas-wrap');
+  const overlay = document.createElement('div');
+  overlay.style.cssText = `position:absolute;inset:0;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;${pass?'background:rgba(34,197,94,.8)':'background:rgba(245,158,11,.8)'}`;
+  overlay.innerHTML = `<div style="font-size:72px;margin-bottom:8px">${pass?'⭐':'💪'}</div><p style="color:white;font-family:'Baloo 2','Noto Sans KR',sans-serif;font-size:32px;font-weight:800;">${pass?'정답!':'다시 도전!'}</p><p style="color:rgba(255,255,255,.9);font-size:14px;margin-top:6px">${pass?'정말 잘 썼어요!':'더 크게 써보세요'}</p>`;
+  wrap.appendChild(overlay);
+  if(pass)spawnConfetti();
+  setTimeout(()=>{overlay.remove();clearQuizCanvas();showScreen('result');},pass?1500:2000);
+}
+
+/* ═══════════════════════════════════════════════════
+   STROKE MODAL
+═══════════════════════════════════════════════════ */
+function showStrokeModal() {
+  const group = document.getElementById('strokeGroup');
+  // 대문자/소문자에 따라 transform과 획 데이터 선택
+  const isUpper = currentIsUpper;
+  const strokeData = isUpper ? uppercaseStrokes : lowercaseStrokes;
+  const paths = strokeData[currentLetter] || [];
+
+  // 대문자: matrix(0.5,0,0,0.5,25,14.5) 적용, 소문자: transform 없음
+  if (isUpper) {
+    group.setAttribute('transform', 'matrix(0.5, 0, 0, 0.5, 25, 14.5)');
+  } else {
+    group.removeAttribute('transform');
+  }
+
+  // 제목 업데이트
+  document.getElementById('strokeModalTitle').textContent = `${currentLetter} 획 순서`;
+
+  // 기존 획 제거
+  group.innerHTML = '';
+  const colors = ['#E74C3C','#E67E22','#2ECC71','#3498DB','#9B59B6'];
+  const sw = isUpper ? '8' : '5';
+  const cr = isUpper ? 8 : 5.5;
+  const fs = isUpper ? 8 : 5.5;
+
+  if (!document.getElementById('strokeStyle')) {
+    const st = document.createElement('style');
+    st.id = 'strokeStyle';
+    st.textContent = '@keyframes draw-stroke{to{stroke-dashoffset:0}}';
+    document.head.appendChild(st);
+  }
+
+  paths.forEach((d, i) => {
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', d);
+    path.setAttribute('stroke', colors[i % colors.length]);
+    path.setAttribute('stroke-width', sw);
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke-linecap', 'round');
+    path.setAttribute('stroke-linejoin', 'round');
+    group.appendChild(path);
+    // getTotalLength() after append so the element is in DOM
+    const len = path.getTotalLength() || 200;
+    path.style.cssText = `stroke-dasharray:${len};stroke-dashoffset:${len};animation:draw-stroke 0.9s ${i*1.1}s cubic-bezier(0.4,0,0.2,1) forwards`;
+
+    // 시작 번호 표시
+    const m = d.match(/M\s*([\d.]+)[,\s]([\d.]+)/);
+    if (m) {
+      const cx = parseFloat(m[1]), cy = parseFloat(m[2]);
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('cx', cx); circle.setAttribute('cy', cy); circle.setAttribute('r', cr);
+      circle.setAttribute('fill', colors[i % colors.length]); circle.setAttribute('opacity', '0.9');
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', cx); text.setAttribute('y', cy + 2);
+      text.setAttribute('text-anchor', 'middle'); text.setAttribute('dominant-baseline', 'middle');
+      text.setAttribute('font-size', fs); text.setAttribute('font-weight', 'bold'); text.setAttribute('fill', 'white');
+      text.textContent = i + 1;
+      group.appendChild(circle);
+      group.appendChild(text);
+    }
+  });
+  document.getElementById('strokeModal').classList.add('show');
+}
+
+function hideStrokeModal() {
+  document.getElementById('strokeModal').classList.remove('show');
+}
+
+/* ═══════════════════════════════════════════════════
+   MODE SELECTION (Quiz)
+═══════════════════════════════════════════════════ */
+function selectMode(btn, color) {
+  document.querySelectorAll('.mode-pick-btn').forEach(b => {
+    b.className = 'mode-pick-btn';
+  });
+  btn.classList.add('sel-' + color);
+}
+
+/* ═══════════════════════════════════════════════════
+   CONFETTI
+═══════════════════════════════════════════════════ */
+function spawnConfetti() {
+  const colors=['#f59e0b','#34d399','#60a5fa','#f472b6','#a78bfa','#fb923c'];
+  for(let i=0;i<60;i++){
+    const el=document.createElement('div');
+    el.className='confetti-piece';
+    el.style.left=Math.random()*100+'vw';
+    el.style.top='-20px';
+    el.style.background=colors[Math.floor(Math.random()*colors.length)];
+    el.style.width=(8+Math.random()*8)+'px';
+    el.style.height=(8+Math.random()*8)+'px';
+    el.style.borderRadius=Math.random()>.5?'50%':'2px';
+    el.style.animationDuration=(2+Math.random()*2)+'s';
+    el.style.animationDelay=(Math.random()*.5)+'s';
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),(4+Math.random()*2)*1000);
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════ */
+renderDots('upperDots', UPPER, upperStatus);
+renderDots('lowerDots', LOWER, lowerStatus);
+renderLetterGrid();
+</script>
+</body>
+</html>
