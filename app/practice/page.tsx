@@ -80,7 +80,7 @@ export default function PracticeModePage() {
       {/* Info box */}
       <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-5">
         <p className="text-sm font-nunito text-yellow-800 leading-relaxed">
-          💡 <strong>4칸 노트</strong>에 글자를 써요!{' '}
+          💡 <strong>4선 노트</strong>에 글자를 써요!{' '}
           대문자는 위쪽 두 칸, 소문자는 가운데 칸에 써야 해요.
         </p>
       </div>
