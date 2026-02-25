@@ -381,7 +381,7 @@ export default function QuizPage() {
             <div className="text-8xl font-bold font-baloo text-sky-600 my-3">{finalScore}<span className="text-4xl text-sky-400">/{finalTotal}</span></div>
             <p className="text-sky-600 font-nunito text-lg font-bold">{message}</p>
             <div className="flex flex-col gap-3 mt-8">
-              <button onClick={() => startQuiz(mode)} className="w-full bg-gradient-to-r from-sky-400 to-blue-400 hover:from-sky-500 hover:to-blue-500 active:scale-95 text-white font-bold py-4 rounded-2xl transition-all font-baloo text-xl shadow-lg shadow-sky-200">🔄 다시 도전!</button>
+              <button onClick={() => startQuiz(mode, scope)} className="w-full bg-gradient-to-r from-sky-400 to-blue-400 hover:from-sky-500 hover:to-blue-500 active:scale-95 text-white font-bold py-4 rounded-2xl transition-all font-baloo text-xl shadow-lg shadow-sky-200">🔄 다시 도전!</button>
               <button onClick={() => router.push('/')} className="w-full bg-white hover:bg-gray-50 active:scale-95 text-gray-600 font-bold py-4 rounded-2xl border border-gray-200 transition-all font-nunito">🏠 홈으로</button>
             </div>
           </div>
