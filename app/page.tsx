@@ -124,7 +124,7 @@ export default function HomePage() {
 
           <div className="bg-yellow-50/80 backdrop-blur-sm border-2 border-yellow-200/50 rounded-3xl p-6 shadow-sm">
             <p className="text-base font-nunito text-yellow-800 leading-relaxed font-medium">
-              💡 <strong>4칸 노트</strong>에 글자를 써요!<br />
+              💡 <strong>4선 노트</strong>에 글자를 써요!<br />
               대문자는 위쪽 두 칸, 소문자는 가운데 칸에 써야 해요.
             </p>
           </div>
