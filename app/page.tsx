@@ -91,7 +91,7 @@ export default function HomePage() {
             알파벳 쓰기 연습
           </h1>
           <p className="text-gray-500 font-nunito text-lg md:text-xl mt-2 font-medium">
-            영어 4칸 노트로 즐겁게 배워요! ✨
+            영어 4선 노트로 즐겁게 배워요! ✨
           </p>
         </div>
       </div>
