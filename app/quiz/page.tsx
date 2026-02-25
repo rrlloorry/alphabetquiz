@@ -33,14 +33,29 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-function buildQuestions(m: Mode): QuizQuestion[] {
-  const pool: QuizQuestion[] = [];
-  if (m === 'uppercase' || m === 'mixed') {
-    pool.push(...UPPERCASE_LETTERS.map((l) => ({ letter: l, isUppercase: true })));
+type QuizScope = 'learned' | 'all';
+
+function buildQuestions(m: Mode, scope: QuizScope): QuizQuestion[] {
+  const data = loadData();
+  let pool: QuizQuestion[] = [];
+  
+  const allUpper = UPPERCASE_LETTERS.map((l) => ({ letter: l, isUppercase: true }));
+  const allLower = LOWERCASE_LETTERS.map((l) => ({ letter: l, isUppercase: false }));
+
+  if (m === 'uppercase') pool = allUpper;
+  else if (m === 'lowercase') pool = allLower;
+  else pool = [...allUpper, ...allLower];
+
+  if (scope === 'learned') {
+    pool = pool.filter((q) => {
+      const status = q.isUppercase 
+        ? data.progress.uppercase[q.letter] 
+        : data.progress.lowercase[q.letter];
+      return status === 'pass';
+    });
   }
-  if (m === 'lowercase' || m === 'mixed') {
-    pool.push(...LOWERCASE_LETTERS.map((l) => ({ letter: l, isUppercase: false })));
-  }
+
+  // 섞어서 10개 추출 (배운게 10개 미만이면 있는만큼만)
   return shuffle(pool).slice(0, QUIZ_COUNT);
 }
 
@@ -50,6 +65,7 @@ export default function QuizPage() {
 
   const [phase, setPhase] = useState<Phase>('intro');
   const [mode, setMode] = useState<Mode>('uppercase');
+  const [scope, setScope] = useState<QuizScope>('learned');
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [answers, setAnswers] = useState<QuizAnswer[]>([]);
@@ -76,9 +92,14 @@ export default function QuizPage() {
     mode === 'lowercase' ? canStartLower :
     canStartMixed;
 
-  function startQuiz(m: Mode) {
-    const qs = buildQuestions(m);
+  function startQuiz(m: Mode, s: QuizScope) {
+    const qs = buildQuestions(m, s);
+    if (qs.length === 0) {
+      alert('공부한 글자가 없어요! 먼저 연습하기에서 공부를 시작해 볼까요? 🦊');
+      return;
+    }
     setMode(m);
+    setScope(s);
     setQuestions(qs);
     setCurrentIdx(0);
     setAnswers([]);
@@ -222,7 +243,22 @@ export default function QuizPage() {
                   </p>
                 </div>
               ) : (
-                <button onClick={() => startQuiz(mode)} className="w-full bg-gradient-to-r from-sky-400 to-blue-400 hover:from-sky-500 hover:to-blue-500 active:scale-95 text-white font-bold py-5 rounded-2xl transition-all shadow-xl shadow-sky-200 font-baloo text-2xl pulse-glow">🎯 퀴즈 시작!</button>
+                <div className="flex flex-col gap-4">
+                  <button
+                    onClick={() => startQuiz(mode, 'learned')}
+                    className="w-full bg-gradient-to-r from-green-400 to-emerald-400 hover:from-green-500 hover:to-emerald-500 active:scale-95 text-white font-bold py-5 rounded-2xl transition-all shadow-xl shadow-green-200 font-baloo text-xl flex flex-col items-center"
+                  >
+                    <span>✅ 쏙쏙 복습 퀴즈</span>
+                    <span className="text-xs font-nunito opacity-90 font-medium mt-1">내가 공부한 글자들만 나와요!</span>
+                  </button>
+                  <button
+                    onClick={() => startQuiz(mode, 'all')}
+                    className="w-full bg-white border-2 border-sky-400 text-sky-500 hover:bg-sky-50 active:scale-95 font-bold py-5 rounded-2xl transition-all shadow-lg shadow-sky-100 font-baloo text-xl flex flex-col items-center"
+                  >
+                    <span>🎯 두근두근 도전 퀴즈</span>
+                    <span className="text-xs font-nunito opacity-90 font-medium mt-1">아직 안 배운 글자도 섞여 나와요!</span>
+                  </button>
+                </div>
               )}
             </div>
           </div>
